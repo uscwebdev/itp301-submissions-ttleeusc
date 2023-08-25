@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Terry Lee | Student Page</title>
+        <meta charset="utf-8">
+        <style>
+            body {width: 50%; margin-left: auto; margin-right: auto; font-family: sans-serif;}
+            #main {display: flex; flex-direction: column; align-items: center;}
+            #works {width: 100%; display: flex; flex-direction: row; justify-content: center;}
+            .workscolumn {width: 50%; text-align: center;}
+            h1 {margin: 30px 0px 10px 0px; font-size: 2.5em;}
+            h2 {margin: 10px; font-size: 2.0em; font-weight: 100;}
+            button {margin: 10px 0px 30px 0px; padding: 10px; font-size: 1.5em;}
+            h3 {margin: 10px; font-size: 1.5em; font-weight: 100;}
+            hr {width: 90%; margin-left: 5%; margin-right: 5%;}
+            p {margin: 10px; font-size: 1.2em;}
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <h1>Terry Lee</h1>
+            <h2>ttlee@usc.edu</h2>
+            <button id="favcolor">Favorite Color</button> 
+            <div id="works">
+                <div id="assignments" class="workscolumn">
+                    <h3>Assignments</h3>
+                    <hr>
+                    
+                </div>
+                <div id="labs" class="workscolumn">
+                    <h3>Labs</h3>
+                    <hr>
+                    <p><a href="index.html">Lab 1: Student Page</a></p>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.querySelector("#favcolor").onclick = function(){
+                document.querySelector("body").style.backgroundColor = "#ae96e0";
+            }
+        </script>
+    </body>
+</html>
