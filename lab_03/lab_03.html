@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Shopping Cart</title>
+        <meta charset="utf-8">
+        <style>
+            body {margin: 0px; font-family: Arial, sans-serif;}
+            #header {margin: 0px; height: 120px; background-color: #a70200; display: flex; align-items: center; justify-content: center;}
+            h1 {margin: 0px; font-size: 2.5em; color: #FFF; font-weight: 200;}
+
+            #main {margin: 50px 0px 25px 0px; height: 600px; display: flex; align-items: center; justify-content: center; flex-direction: column;}
+            #productsList {display: flex;}
+            .products {width: 300px; margin: 0px 50px 50px 50px; display: flex; flex-direction: column; align-items: center;}
+            .productPhotos {width: 300px; height: 300px; border: 2px solid #000;}
+            h3 {text-align: center; margin: 20px 0px 10px 0px; font-size: 1.5em;}
+            h4 {text-align: center; margin: 0px; font-size: 1.4em;}
+            #productsList {display: flex;}
+            h5 {font-size: 1.5em; margin: 0px 0px 20px 0px; text-align: center;}
+            h6 {font-size: 1.3em; margin: 0px 0px 20px 0px; text-align: center;}
+            #balanceInput {display: flex; align-items: center; justify-content: center; margin-bottom: 30px;}
+            #dollarLabel {font-size: 1.2em; margin-right: 5px;}
+            #balanceInputBox {font-size: 1.2em; width: 150px;}
+            #balanceEntry {font-size: 1.0em; margin-left: 5px;}
+
+            #footer {margin: 0px; height: 60px; background-color: #ffb31b; display: flex; align-items: center; justify-content: center;}
+            h2 {margin: 0px; font-size: 1.0em; color: #000; font-weight: 100;}
+        </style>
+    </head>
+    <body>
+        <div id="header">
+            <h1>My Cart</h1>
+        </div>
+        <div id="main">
+            <div id="productsList"> <!--Horizontal space with all three products & prices-->
+                <div id="product1" class="products">
+                    <img id="product1Photo" class="productPhotos" src="images/1.jpg" alt="A green pea resembling dog plushie">
+                    <h3>Green Pea Dog Plushie</h3>
+                    <h4>$<span id="price1">25</span></h4> <!--Item 1 price-->
+                </div>
+                <div id="product2" class="products">
+                    <img id="product2Photo" class="productPhotos" src="images/2.png" alt="Giant plushie of a panda with an abnormally large chin">
+                    <h3>Big Chin Panda Plushie (XL Size)</h3>
+                    <h4>$<span id="price2">99</span></h4> <!--Item 2 price-->
+                </div>
+                <div id="product3" class="products">
+                    <img id="product3Photo" class="productPhotos" src="images/3.png" alt="3 figures of dogs with bird legs, each dog being a different breed">
+                    <h3>Dog with Bird Legs Figures (Triple Set)</h3>
+                    <h4>$<span id="price3">15</span></h4> <!--Item 3 price-->
+                </div>
+            </div>
+            <div id="subtotal">
+                <h5>Cart Subtotal: $<span id="subtotalInt">0</span></h5> <!--0 changes to match user input-->
+                <h6>Remaining Balance: $<span id="remainingBalance">0</span></h6>
+                <div id="balanceInput">
+                    <div id="dollarLabel">$</div>
+                    <input type="text" id="balanceInputBox">
+                    <button id="balanceEntry">Add</button>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <h2>Page by Terry Lee (2023)</h2>
+        </div>
+        <script>
+            //Step 0: Convert all product prices to variables
+            var p1Price = parseInt(document.querySelector("#price1").innerHTML);
+            var p2Price = parseInt(document.querySelector("#price2").innerHTML);
+            var p3Price = parseInt(document.querySelector("#price3").innerHTML);
+
+            //Step 0.5: Convert subtotal into an integer variable
+            var currentSubtotal = parseInt(document.querySelector("#subtotalInt").innerHTML);
+            var currentBalance = parseInt(document.querySelector("#remainingBalance").innerHTML);
+
+            //Step 1: User clicks product image
+            document.querySelector("#product1Photo").onclick = function(){
+                if (currentBalance >= p1Price) {
+                    currentSubtotal += p1Price; //Step 2: Adds product price to subtotal variable
+                    document.querySelector("#subtotalInt").innerHTML = currentSubtotal; //Step 3: Updates span tag subtotal using subtotal variable
+                    currentBalance -= p1Price;
+                    document.querySelector("#remainingBalance").innerHTML = currentBalance;
+                }
+                else {
+                    alert("Insufficient Funds!");
+                }
+            }
+
+            //Step 1: User clicks product image
+            document.querySelector("#product2Photo").onclick = function(){
+                if (currentBalance >= p2Price) {
+                    currentSubtotal += p2Price; //Step 2: Adds product price to subtotal variable
+                    document.querySelector("#subtotalInt").innerHTML = currentSubtotal; //Step 3: Updates span tag subtotal using subtotal variable
+                    currentBalance -= p2Price;
+                    document.querySelector("#remainingBalance").innerHTML = currentBalance;
+                }
+                else {
+                    alert("Insufficient Funds!");
+                }
+            }
+
+            //Step 1: User clicks product image
+            document.querySelector("#product3Photo").onclick = function(){
+                if (currentBalance >= p3Price) {
+                    currentSubtotal += p3Price; //Step 2: Adds product price to subtotal variable
+                    document.querySelector("#subtotalInt").innerHTML = currentSubtotal; //Step 3: Updates span tag subtotal using subtotal variable
+                    currentBalance -= p3Price;
+                    document.querySelector("#remainingBalance").innerHTML = currentBalance;
+                }
+                else {
+                    alert("Insufficient Funds!");
+                }
+            }            
+
+            document.querySelector("#balanceEntry").onclick = function(){
+                var toAdd = parseInt(document.querySelector("#balanceInputBox").value);
+                if (toAdd > 0) {
+                    currentBalance += toAdd;
+                    document.querySelector("#remainingBalance").innerHTML = currentBalance;
+                    document.querySelector("#balanceInputBox").value = "";
+                }
+            }
+        </script>
+    </body>
+</html>
