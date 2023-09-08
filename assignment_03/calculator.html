@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Calculator</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+	<style>
+		#display {
+			font-size: 2em;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<h1 class="col-12 text-center mt-5">JS Calculator</h1>
+		</div> <!-- .row -->
+		<div class="row">
+			<div id="calculator" class="mt-4 col-12 col-md-6 ml-md-auto mr-md-auto col-lg-4">
+				<div class="row">
+					<input type="text" id="display" class="col-12 text-right form-control" value="0">
+				</div> <!-- .row -->
+				<div class="row">
+					<button id="clear" class="col-9 btn btn-lg btn-outline-dark">AC</button>
+					<button id="divide" class="col-3 btn btn-lg btn-outline-dark">/</button>
+				</div> <!-- .row -->
+				<div class="row">
+					<button id="seven" class="col-3 btn btn-lg btn-outline-dark">7</button>
+					<button id="eight" class="col-3 btn btn-lg btn-outline-dark">8</button>
+					<button id="nine" class="col-3 btn btn-lg btn-outline-dark">9</button>
+					<button id="multiply" class="col-3 btn btn-lg btn-outline-dark">x</button>
+				</div> <!-- .row -->
+				<div class="row">
+					<button id="four" class="col-3 btn btn-lg btn-outline-dark">4</button>
+					<button id="five" class="col-3 btn btn-lg btn-outline-dark">5</button>
+					<button id="six" class="col-3 btn btn-lg btn-outline-dark">6</button>
+					<button id="subtract" class="col-3 btn btn-lg btn-outline-dark">-</button>
+				</div> <!-- .row -->
+				<div class="row">
+					<button id="one" class="col-3 btn btn-lg btn-outline-dark">1</button>
+					<button id="two" class="col-3 btn btn-lg btn-outline-dark">2</button>
+					<button id="three" class="col-3 btn btn-lg btn-outline-dark">3</button>
+					<button id="add" class="col-3 btn btn-lg btn-outline-dark">+</button>
+				</div> <!-- .row -->
+				<div class="row">
+					<button id="zero" class="col-6 btn btn-lg btn-outline-dark">0</button>
+					<button id="decimal" class="col-3 btn btn-lg btn-outline-dark">.</button>
+					<button id="equals" class="col-3 btn btn-lg btn-outline-dark">=</button>
+				</div> <!-- .row -->
+			</div> <!-- #calculator -->
+		</div> <!-- .row -->
+	</div> <!-- .container -->
+	<script>
+		//Saving tags into variables
+		var display = document.querySelector("#display");
+		var zero = document.querySelector("#zero");
+		var one = document.querySelector("#one");
+		var two = document.querySelector("#two");
+		var three = document.querySelector("#three");
+		var four = document.querySelector("#four");
+		var five = document.querySelector("#five");
+		var six = document.querySelector("#six");
+		var seven = document.querySelector("#seven");
+		var eight = document.querySelector("#eight");
+		var nine = document.querySelector("#nine");
+		var decimal = document.querySelector("#decimal");
+		var add = document.querySelector("#add");
+		var subtract = document.querySelector("#subtract");
+		var multiply = document.querySelector("#multiply");
+		var divide = document.querySelector("#divide");
+		var equals = document.querySelector("#equals");
+		var clear = document.querySelector("#clear");
+
+		//To check if decimal point has been placed already
+		var decimalCheck = false;
+
+		//For operations
+		var firstNum = 0.0;
+		var secondNum = 0.0;
+		var adding = false;
+		var subtracting = false;
+		var multiplying = false;
+		var dividing = false;
+
+		//Number & decimal buttons functionality
+		zero.onclick = function(){
+			if (parseFloat(display.value) == 0 && decimalCheck == false){ //If it's currently 0 on display & without decimals
+				display.value = 0; //Sets display value to 0 (no change)
+			}
+			else { //After any other number or decimal point has been entered
+				display.value = display.value + "0"; //Places 0 to displayed number
+			}
+		}
+
+		one.onclick = function(){ //Same thing as zero.onclick for all of these
+			if (parseFloat(display.value) == 0 && decimalCheck == false){
+				display.value = 1;
+			}
+			else {
+				display.value = display.value + "1";
+			}
+		}
+
+		two.onclick = function(){
+			if (parseFloat(display.value) == 0 && decimalCheck == false){
+				display.value = 2;
+			}
+			else {
+				display.value = display.value + "2";
+			}
+		}
+
+		three.onclick = function(){
+			if (parseFloat(display.value) == 0 && decimalCheck == false){
+				display.value = 3;
+			}
+			else {
+				display.value = display.value + "3";
+			}
+		}
+
+		four.onclick = function(){
+			if (parseFloat(display.value) == 0 && decimalCheck == false){
+				display.value = 4;
+			}
+			else {
+				display.value = display.value + "4";
+			}
+		}
+		
+		five.onclick = function(){
+			if (parseFloat(display.value) == 0 && decimalCheck == false){
+				display.value = 5;
+			}
+			else {
+				display.value = display.value + "5";
+			}
+		}
+
+		six.onclick = function(){
+			if (parseFloat(display.value) == 0 && decimalCheck == false){
+				display.value = 6;
+			}
+			else {
+				display.value = display.value + "6";
+			}
+		}
+
+		seven.onclick = function(){
+			if (parseFloat(display.value) == 0 && decimalCheck == false){
+				display.value = 7;
+			}
+			else {
+				display.value = display.value + "7";
+			}
+		}
+		
+		eight.onclick = function(){
+			if (parseFloat(display.value) == 0 && decimalCheck == false){
+				display.value = 8;
+			}
+			else {
+				display.value = display.value + "8";
+			}
+		}
+
+		nine.onclick = function(){
+			if (parseFloat(display.value) == 0 && decimalCheck == false){
+				display.value = 9;
+			}
+			else {
+				display.value = display.value + "9";
+			}
+		}
+
+		decimal.onclick = function(){
+			if (decimalCheck == false) { //Checks if a decimal point has already been placed
+				display.value = display.value + ".";
+				decimalCheck = true; //To prevent additional decimal points from being placed
+			}
+			else {
+				alert("You may not place multiple decimal points.");
+			}
+		}
+
+		//Operations
+		add.onclick = function(){
+			firstNum = parseFloat(display.value); //Saves current display as first value for calculation
+			adding = true; //Marks operation as addition
+			display.value = 0; //Resets display value to 0
+			decimalCheck = false; //Resets decimal check
+		}
+
+		subtract.onclick = function(){ //Same thing as add.onclick for all of these
+			firstNum = parseFloat(display.value);
+			subtracting = true;
+			display.value = 0;
+			decimalCheck = false;
+		}
+
+		multiply.onclick = function(){
+			firstNum = parseFloat(display.value);
+			multiplying = true;
+			display.value = 0;
+			decimalCheck = false;
+		}
+
+		divide.onclick = function(){
+			firstNum = parseFloat(display.value);
+			dividing = true;
+			display.value = 0;
+			decimalCheck = false;
+		}
+
+		equals.onclick = function(){
+			secondNum = parseFloat(display.value); //Takes in display as the second value for operation
+
+			//Does the operation as accordingly marked by code above
+			if (adding == true) {
+				display.value = firstNum + secondNum;
+			}
+			if (subtracting == true) {
+				display.value = firstNum - secondNum;
+			}
+			if (multiplying == true) {
+				display.value = firstNum * secondNum;
+			}
+			if (dividing == true) {
+				display.value = firstNum / secondNum;
+			}
+
+			//Resets all checks
+			firstNum = 0;
+			secondNum = 0;
+			decimalCheck = false;
+			adding = false;
+			subtracting = false;
+			multiplying = false;
+			dividing = false;
+		}
+
+		clear.onclick = function(){ //Resets all checks
+			firstNum = 0;
+			secondNum = 0;
+			display.value = 0;
+			decimalCheck = false;
+			adding = false;
+			subtracting = false;
+			multiplying = false;
+			dividing = false;
+		}
+	</script>
+</body>
+</html>
