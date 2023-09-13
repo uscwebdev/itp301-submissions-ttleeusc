@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JS Photo Gallery</title>
+        <meta charset="utf-8">
+        <style>
+            body {width: 1000px; margin-left: auto; margin-right: auto; font-family: Arial, sans-serif;}
+            h1 {text-align: center; margin: 20px 0px 20px 0px;}
+            #thumbnails {display: flex; width: 820px; margin-left: auto; margin-right: auto;}
+            .tn {width: 150px; height: 150px; object-fit: cover; margin: 0px 5px; border: 2px solid #000; overflow: hidden;}
+            hr {width: 820px; margin: 10px 90px 10px 90px;}
+            #main {display: flex; flex-direction: column; align-items: center;}
+            #main_img {width: auto; height: 450px; object-fit: contain;}
+            p {font-size: 1.2em; width: 600px; text-align: center;}
+        </style>
+    </head>
+    <body>
+        <h1>Favorite Pictures from the Busan Aquarium (Winter 2022)</h1>
+        <div id="thumbnails">
+            <img id="tn1" class="tn" src="images/1.jpg" alt="A Striped Garden Eel with only its head poking above the sand; several more Striped Garden Eels in the background">
+            <img id="tn2" class="tn" src="images/2.jpg" alt="A group of White-Spotted Jellyfish in a circular glass display tank">
+            <img id="tn3" class="tn" src="images/3.jpg" alt="An Axolotl staring at its reflection on the wall of its glass tank">
+            <img id="tn4" class="tn" src="images/4.jpg" alt="An upside-down Brazilian Seahorse floating about">
+            <img id="tn5" class="tn" src="images/5.jpg" alt="A Giant Isopod on top of a tree branch underwater">
+        </div>
+        <hr>
+        <div id="main">
+            <img id="main_img" src="images/1.jpg" alt="A Striped Garden Eel with only its head poking above the sand; several more Striped Garden Eels in the background">
+            <p><span id="caption">A Striped Garden Eel with only its head poking above the sand; several more Striped Garden Eels in the background</span></p>
+        </div>
+        <script>
+            var allImages = document.querySelectorAll(".tn");
+
+            var main_img = document.querySelector("#main_img");
+            
+            function changeImage (image) {
+                main_img.src = image.src;
+                main_img.alt = image.alt;
+                document.querySelector("#caption").innerHTML = image.alt;
+            }
+
+            for (var i=0; i<allImages.length; i++) {
+                allImages[i].onclick = function(){
+                    changeImage(this);
+                }
+            }
+
+            //Assignment 1 code below
+            /*
+            document.querySelector("#tn1").onclick = function(){
+                document.querySelector("#main_img").src="images/1.jpg"
+                document.querySelector("#main_img").alt="A Striped Garden Eel with only its head poking above the sand; several more Striped Garden Eels in the background"
+            }
+            document.querySelector("#tn2").onclick = function(){
+                document.querySelector("#main_img").src="images/2.jpg"
+                document.querySelector("#main_img").alt="A group of White-Spotted Jellyfish in a circular glass display tank"
+            }
+            document.querySelector("#tn3").onclick = function(){
+                document.querySelector("#main_img").src="images/3.jpg"
+                document.querySelector("#main_img").alt="An Axolotl staring at its reflection on the wall of its glass tank"
+            }
+            document.querySelector("#tn4").onclick = function(){
+                document.querySelector("#main_img").src="images/4.jpg"
+                document.querySelector("#main_img").alt="An upside-down Brazilian Seahorse floating about"
+            }
+            document.querySelector("#tn5").onclick = function(){
+                document.querySelector("#main_img").src="images/5.jpg"
+                document.querySelector("#main_img").alt="A Giant Isopod on top of a tree branch underwater"
+            }
+            */
+        </script>
+    </body>
+</html>
