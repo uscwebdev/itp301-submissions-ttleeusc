@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Liar's Dice</title>
+        <meta charset="utf-8">
+        <style>
+            body {width: 1000px; margin-right: auto; margin-left: auto; margin-top: 0px; margin-bottom: 0px; font-family: Arial, sans-serif;}
+
+            #top {margin: 30px 0px;}
+            h1 {margin: 0px; text-align: center;}
+
+            #userInput {display: flex; margin: 20px 0px; justify-content: center; align-items: center;}
+            h2 {margin: 0px; font-weight: 100; margin: 0px 5px;}
+            #guessInput {margin: 0px 5px; font-size: 1.3em; width: 100px;}
+            #submitInput {margin: 0px 5px; font-size: 1.2em;}
+
+            hr {margin: 20px 0px;}
+
+            #results {display: flex; margin: 20px 0px; justify-content: center; align-items: center;}
+            h3 {margin: 0px; font-size: 1.5em;}
+            #resultsText {color: #000;}
+
+            #dice {display: flex; margin: 20px 0px; justify-content: center; align-items: center;}
+            #dice img {width: 100px; height: auto; margin: 20px 10px;}
+        </style>
+    </head>
+    <body>
+        <div id="top">
+            <h1>Liar's Dice</h1>
+        </div>
+
+        <div id="userInput">
+            <h2>Your Guess:</h2>
+            <input type="text" id="guessInput">
+            <button id="submitInput">Submit</button>
+        </div>
+
+        <hr>
+
+        <div id="results">
+            <h3>Results: <span id="resultsText">???</span></h3>
+        </div>
+
+        <div id="dice">
+            <img id="img1" class="dice_img" src="dice_images/1.png" alt="Image of a dice face">
+            <img id="img2" class="dice_img" src="dice_images/1.png" alt="Image of a dice face">
+            <img id="img3" class="dice_img" src="dice_images/1.png" alt="Image of a dice face">
+            <img id="img4" class="dice_img" src="dice_images/1.png" alt="Image of a dice face">
+            <img id="img5" class="dice_img" src="dice_images/1.png" alt="Image of a dice face">
+        </div>
+
+        <script>
+            document.querySelector("#submitInput").onclick = function(){ //Trigger
+                var userInputNumber = 0; //Variable for user's guess
+                var numbers = []; //Variable for storing random numbers (dice values)
+                var images = document.querySelectorAll(".dice_img"); //Variable storing 5 dice images
+
+                //1. Accepts & saves user's guess input
+                userInputNumber = parseInt(document.querySelector("#guessInput").value);
+
+                //2. Loops through numbers array and populates it with 5 random integers
+                for (var i=0; i<5; i++) {
+                    var randomInt = Math.floor(Math.random() * 6 + 1);
+                    numbers.push(randomInt);
+                }
+
+                //3. Loops through images array and sets each image to one corresponding to the numbers array
+                for (var i=0; i<numbers.length; i++) {
+                    var imageToPick = numbers[i] + ".png"; //Variable for the src text for image to pick based on numbers array
+                    var currentImage = images[i];
+                    currentImage.src = "file:///D:/School/itp301-submissions-ttleeusc/assignment_04/dice_images/" + imageToPick;
+                }
+
+                //4. Function that checks if user's guess is correct
+                function checkGuess (input) {
+                    var guessCheckBoolean = false;
+
+                    for (var i=0; i<numbers.length; i++) {
+                        if (numbers[i] == input) {
+                            guessCheckBoolean = true;
+                        }
+                    }
+
+                    return guessCheckBoolean;
+                }
+
+                //5. Checking user's guess & responding accordingly
+                var guessCheck = checkGuess(userInputNumber);
+                
+                if (guessCheck) {
+                    document.querySelector("#resultsText").innerHTML = "You guessed it!";
+                    document.querySelector("#resultsText").style.color = "#28CF00";
+                } 
+                else {
+                    document.querySelector("#resultsText").innerHTML = "Try again.";
+                    document.querySelector("#resultsText").style.color = "#C60000";
+                }
+            }
+        </script>
+    </body>
+</html>
